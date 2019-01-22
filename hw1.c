@@ -90,6 +90,7 @@ int main(int argc, char **argv)
     int N, i, j, k;
     double **a=NULL, **b=NULL, **c=NULL;
     double starttime, endtime;
+    time_t t;
 
     if (argc != 2) {
       printf("Usage: %s <N>\n", argv[0]);
