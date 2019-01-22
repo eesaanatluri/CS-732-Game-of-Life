@@ -55,7 +55,7 @@ void printarray(double **a, int mrows, int ncols) {
 
   for (i=0; i<mrows; i++) {
     for (j=0; j<ncols; j++)
-      printf("%f ", a[i][j]);
+      printf("%d ", (int)a[i][j]);
     printf("\n");
   }
 }
