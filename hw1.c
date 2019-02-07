@@ -150,6 +150,7 @@ int main(int argc, char **argv)
 
     starttime = gettime();
 
+    for(i=0; i<MAX_ITER; i++){
         createNextGen(a, b, N+2, N+2);
         printf("This is Iteration %d\n", i);
 
@@ -177,6 +178,8 @@ int main(int argc, char **argv)
                 a = b;
                 b = t;
             }
+    }
+
 
     printf("Time taken = %lf seconds\n", endtime-starttime);
 
