@@ -148,11 +148,7 @@ int main(int argc, char **argv)
     srand((unsigned) time(&t));
     a = initarray(a, N+2, N+2);
 
-    /* Perform matrix multiplication */
     starttime = gettime();
-    // c = matmul1(a,b,c,N);
-    matmul2(a,b,&c,N);
-    endtime = gettime();
 
 #ifdef DEBUG_PRINT
     printarray(a, N, N);
