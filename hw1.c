@@ -78,18 +78,7 @@ int checkneighbors(double **a, int x, int y)
     return count;
 }
 
-/* output array address is passed as an argument */
-void matmul2(double **a, double **b, double ***c, int N)
 {
-    int i, j, k;
-    /* You could use: double **out = *c;
-       and replace (*c) below with out,
-       if you like to make referencing easier to understand */
-
-    for (i=0; i<N; i++)
-      for (j=0; j<N; j++)
-	for (k=0; k<N; k++)
-	  (*c)[i][j] += a[i][k]*b[k][j];
 }
 
 int main(int argc, char **argv)
