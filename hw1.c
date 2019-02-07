@@ -140,10 +140,9 @@ int main(int argc, char **argv)
     N = atoi(argv[1]);
     int MAX_ITER = atoi(argv[2]);
 
-    /* Allocate memory for all three matrices and temporary arrays */
-    a = allocarray(N, N);
-    b = allocarray(N, N);
-    c = allocarray(N, N);
+    /* Allocate memory for matrices a,b */
+    a = allocarray(N+2, N+2);
+    b = allocarray(N+2, N+2);
 
     /* Initialize the matrices */
     srand((unsigned) time(&t));
