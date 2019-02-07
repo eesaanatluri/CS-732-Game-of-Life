@@ -64,7 +64,18 @@ void printarray(double **a, int mrows, int ncols) {
   }
 }
 
+// function to count the Neighbors
+int checkneighbors(double **a, int x, int y)
 {
+    int i,j;
+    int count = 0;
+        for(i=-1; i<2; i++){
+            for(j=-1; j<2; j++){
+                count = count + a[x+i][y+j];
+            }
+        }
+    count = count - a[x][y];
+    return count;
 }
 
 /* output array address is passed as an argument */
