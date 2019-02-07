@@ -128,7 +128,7 @@ int ismatrixequal(double **a, double **b, int N)
 int main(int argc, char **argv)
 {
     int N, i, j, k;
-    double **a=NULL, **b=NULL, **c=NULL;
+    double **a=NULL, **b=NULL;
     double starttime, endtime;
     time_t t;
 
