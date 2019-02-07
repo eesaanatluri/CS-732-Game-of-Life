@@ -46,6 +46,10 @@ double **initarray(double **a, int mrows, int ncols) {
     for (j=0; j<ncols; j++){
     // Initialize the cells with random 0's and 1's
         a[i][j] = rand() % 2;
+        a[0][j] = 0;
+        a[i][0] = 0;
+        a[mrows-1][j] = 0;
+        a[i][ncols-1] = 0;
     }
   return a;
 }
