@@ -108,8 +108,22 @@ double **createNextGen(double **a, double **b, int mrows, int ncols)
     return 0;
 }
 
+int ismatrixequal(double **a, double **b, int N)
 {
+    int i, j,flag=1;
+    for (i=0; i<N; i++){
+      for (j=0; j<N; j++){
+          if(a[i][j]!=b[i][j]){
+              /* Using ! condition will allow you to not having check for equality for all elements.
+              It will bail out on first inequality. Using this for my sanity. */
+              flag=0;
+              break;
+          }
+      }
+  }
+  return flag;
 }
+
 
 int main(int argc, char **argv)
 {
