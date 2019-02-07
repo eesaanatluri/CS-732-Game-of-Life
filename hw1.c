@@ -144,11 +144,7 @@ int main(int argc, char **argv)
     a = allocarray(N+2, N+2);
     b = allocarray(N+2, N+2);
 
-    /* Initialize the matrices */
     srand((unsigned) time(&t));
-    a = initarray(a, N, N);
-    b = initarray(b, N, N);
-    c = initarray(c, N, N);
 
     /* Perform matrix multiplication */
     starttime = gettime();
