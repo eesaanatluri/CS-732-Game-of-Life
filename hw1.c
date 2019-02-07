@@ -78,6 +78,36 @@ int checkneighbors(double **a, int x, int y)
     return count;
 }
 
+
+double **createNextGen(double **a, double **b, int mrows, int ncols)
+{
+    int i,j;
+
+    for (i=0; i<mrows; i++) {
+      for (j=0; j<ncols; j++){
+        int current = a[i][j];
+        int neighbors=checkneighbors(a,i,j);
+            // Check if the current cell is an edge.
+            if(i==0 || i==mrows-1 || j==0 || j==ncols-1){
+                b[i][j]=current; // If edge leave it be or I might write code to just ignore/skip.
+            }
+            else{
+            //implement rules of the game
+            if(current==0 && neighbors ==3){
+                b[i][j]=1;
+            }
+            else if(current==1 && (neighbors < 2 || neighbors>3)){
+                b[i][j]=0;
+            }
+            else{
+                b[i][j]=current;
+            }
+        }
+        }
+    }
+    return 0;
+}
+
 {
 }
 
