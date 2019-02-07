@@ -64,15 +64,7 @@ void printarray(double **a, int mrows, int ncols) {
   }
 }
 
-/* return the output array address as return value */
-double **matmul1(double **a, double **b, double **c, int N)
 {
-    int i, j, k;
-    for (i=0; i<N; i++)
-      for (j=0; j<N; j++)
-	for (k=0; k<N; k++)
-	  c[i][j] += a[i][k]*b[k][j];
-    return c;
 }
 
 /* output array address is passed as an argument */
