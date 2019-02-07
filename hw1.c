@@ -132,12 +132,13 @@ int main(int argc, char **argv)
     double starttime, endtime;
     time_t t;
 
-    if (argc != 2) {
+    if (argc != 3) {
       printf("Usage: %s <N>\n", argv[0]);
       exit(-1);
     }
 
     N = atoi(argv[1]);
+    int MAX_ITER = atoi(argv[2]);
 
     /* Allocate memory for all three matrices and temporary arrays */
     a = allocarray(N, N);
