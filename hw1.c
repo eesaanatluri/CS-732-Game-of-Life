@@ -163,6 +163,26 @@ int main(int argc, char **argv)
     printf("\n");
     printarray(c, N, N);
 #endif
+        createNextGen(a, b, N+2, N+2);
+        printf("This is Iteration %d\n", i);
+
+        //Check if the matrices are equal to end the Game.
+        int test=ismatrixequal(a,b,N);
+
+        //printf("%d\n", test);
+
+            if(test)
+            {
+                printf("Exiting because there is no change in generations.\n");
+                break; // stop the game basically.
+            }
+              else
+            {
+                //swapmatrices(a, b);
+                double **t = a;
+                a = b;
+                b = t;
+            }
 
     printf("Time taken = %lf seconds\n", endtime-starttime);
 
