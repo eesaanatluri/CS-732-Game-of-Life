@@ -180,6 +180,7 @@ int main(int argc, char **argv)
             }
     }
 
+    endtime = gettime();
 
     printf("Time taken = %lf seconds\n", endtime-starttime);
 
