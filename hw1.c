@@ -1,5 +1,5 @@
 /******************************************************************************
-*  Sample C program for Homework1 in CS 432/632/732                           *
+*  Homework1 in CS 432/632/732                           *
 *                                                                             *
 *  Program illustrate the use of dynamic memory allocation to create          *
 *  contiguous 2D-matrices and use traditional array indexing.                 *
