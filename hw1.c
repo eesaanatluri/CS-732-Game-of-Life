@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+/* Function to calculate the runtime */
 double gettime(void) {
   struct timeval tval;
 
@@ -23,6 +24,7 @@ double gettime(void) {
   return( (double)tval.tv_sec + (double)tval.tv_usec/1000000.0 );
 }
 
+/* Function to dynamically allocate memory for matrices(2D Arrays) using row major storage */
 double **allocarray(int P, int Q) {
   int i;
   double *p, **a;
@@ -39,6 +41,8 @@ double **allocarray(int P, int Q) {
   return a;
 }
 
+/*Function definition to Initialize a matrix with random 0's and 1's
+       and pad them with ghost cells on all 4 sides with 0's.       */
 double **initarray(double **a, int mrows, int ncols) {
   int i,j;
 
@@ -54,6 +58,7 @@ double **initarray(double **a, int mrows, int ncols) {
   return a;
 }
 
+/* Function to print the 2D array (used in debugging when -D flag enabled)*/
 void printarray(double **a, int mrows, int ncols) {
   int i,j;
 
@@ -64,7 +69,7 @@ void printarray(double **a, int mrows, int ncols) {
   }
 }
 
-// function to count the Neighbors
+/* Function to count the no. of live Neighbors */
 int checkneighbors(double **a, int x, int y)
 {
     int i,j;
@@ -74,11 +79,11 @@ int checkneighbors(double **a, int x, int y)
                 count = count + a[x+i][y+j];
             }
         }
-    count = count - a[x][y];
+    count = count - a[x][y]; //remove the cell itself from count.
     return count;
 }
 
-
+/* Function to create next generation of cells */
 double **createNextGen(double **a, double **b, int mrows, int ncols)
 {
     int i,j;
@@ -87,12 +92,12 @@ double **createNextGen(double **a, double **b, int mrows, int ncols)
       for (j=0; j<ncols; j++){
         int current = a[i][j];
         int neighbors=checkneighbors(a,i,j);
-            // Check if the current cell is an edge.
+            /* Check if the current cell is an edge i.e. ghost cell */
             if(i==0 || i==mrows-1 || j==0 || j==ncols-1){
-                b[i][j]=current; // If edge leave it be or I might write code to just ignore/skip.
+                b[i][j]=current; // If edge leave it be.
             }
             else{
-            //implement rules of the game
+            // If not edge implement rules of the game to create next gen matrix 'b'
             if(current==0 && neighbors ==3){
                 b[i][j]=1;
             }
@@ -108,14 +113,15 @@ double **createNextGen(double **a, double **b, int mrows, int ncols)
     return 0;
 }
 
+/* Function to check for equality of matrices */
 int ismatrixequal(double **a, double **b, int N)
 {
     int i, j,flag=1;
     for (i=0; i<N; i++){
       for (j=0; j<N; j++){
           if(a[i][j]!=b[i][j]){
-              /* Using ! condition will allow you to not having check for equality for all elements.
-              It will bail out on first inequality. Using this for my sanity. */
+              /* Start by assuming matrices are equal with flag set to 1.
+              If the elements are not equal then set flag to 0 and break */
               flag=0;
               break;
           }
@@ -132,15 +138,16 @@ int main(int argc, char **argv)
     double starttime, endtime;
     time_t t;
 
+    /* Prints help message if no. of args not equal to 3 */
     if (argc != 3) {
-      printf("Usage: %s <N>\n", argv[0]);
+      printf("Usage: %s <SIZE> <MAX_ITER>\n", argv[0]);
       exit(-1);
     }
 
     N = atoi(argv[1]);
     int MAX_ITER = atoi(argv[2]);
 
-    /* Allocate memory for matrices a,b */
+    /* Allocate memory for matrices a,b of order N+2 to accommodate ghost cells */
     a = allocarray(N+2, N+2);
     b = allocarray(N+2, N+2);
 
@@ -148,8 +155,10 @@ int main(int argc, char **argv)
     srand((unsigned) time(&t));
     a = initarray(a, N+2, N+2);
 
-    starttime = gettime();
+    starttime = gettime(); //Start time to measure the working block performance
 
+    /* Create new generations until 'MAX_ITER' iterations reached or until there's no change in generations
+       Ending criteria for the game is implemented below. */
     for(i=0; i<MAX_ITER; i++){
         createNextGen(a, b, N+2, N+2);
         printf("This is Iteration %d\n", i);
@@ -161,26 +170,26 @@ int main(int argc, char **argv)
             printf("\n");
         #endif*/
 
-        //Check if the matrices are equal to end the Game.
+        /* Check if the matrices are equal to end the Game. */
         int test=ismatrixequal(a,b,N);
 
         //printf("%d\n", test);
 
             if(test)
             {
-                printf("Exiting because there is no change in generations.\n");
+                printf("Exiting at iteration %d because there is no change in generations.\n", i);
                 break; // stop the game basically.
             }
               else
             {
-                //swapmatrices(a, b);
+                //swapmatrices(a, b); by swapping their corresponding pointers
                 double **t = a;
                 a = b;
                 b = t;
             }
     }
 
-    endtime = gettime();
+    endtime = gettime(); //End time to measure the working block performance.
 
     printf("Time taken = %lf seconds\n", endtime-starttime);
 
