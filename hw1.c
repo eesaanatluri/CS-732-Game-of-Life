@@ -150,15 +150,15 @@ int main(int argc, char **argv)
 
     starttime = gettime();
 
-#ifdef DEBUG_PRINT
-    printarray(a, N, N);
-    printf("\n");
-    printarray(b, N, N);
-    printf("\n");
-    printarray(c, N, N);
-#endif
         createNextGen(a, b, N+2, N+2);
         printf("This is Iteration %d\n", i);
+
+        /*#ifdef DEBUG_PRINT
+            printarray(a, N+2, N+2);
+            printf("\n");
+            printarray(b, N+2, N+2);
+            printf("\n");
+        #endif*/
 
         //Check if the matrices are equal to end the Game.
         int test=ismatrixequal(a,b,N);
