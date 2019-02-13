@@ -105,9 +105,9 @@ double **createNextGen(double **a, double **b, int mrows, int ncols)
             }
         }
         }
-    }
     return 0;
-}
+    }
+
 
 /* Function to check for equality of matrices */
 int ismatrixequal(double **a, double **b, int N)
