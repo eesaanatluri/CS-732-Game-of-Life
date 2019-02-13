@@ -89,8 +89,8 @@ double **createNextGen(double **a, double **b, int mrows, int ncols)
 {
     int i,j;
 
-    for (i=0; i<mrows; i++) {
-      for (j=0; j<ncols; j++){
+    for (i=1; i<mrows-1; i++) {
+      for (j=1; j<ncols-1; j++){
         int current = a[i][j];
         int neighbors=checkneighbors(a,i,j);
             /* Check if the current cell is an edge i.e. ghost cell */
