@@ -93,12 +93,7 @@ double **createNextGen(double **a, double **b, int mrows, int ncols)
       for (j=1; j<ncols-1; j++){
         int current = a[i][j];
         int neighbors=checkneighbors(a,i,j);
-            /* Check if the current cell is an edge i.e. ghost cell */
-            if(i==0 || i==mrows-1 || j==0 || j==ncols-1){
-                b[i][j]=current; // If edge leave it be.
-            }
-            else{
-            // If not edge implement rules of the game to create next gen matrix 'b'
+            // implement rules of the game to create next gen matrix 'b'
             if(current==0 && neighbors ==3){
                 b[i][j]=1;
             }
