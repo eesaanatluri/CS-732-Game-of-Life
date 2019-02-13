@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <time.h>
 
 /* Function to calculate the runtime */
 double gettime(void) {
