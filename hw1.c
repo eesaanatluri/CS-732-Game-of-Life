@@ -144,6 +144,7 @@ int main(int argc, char **argv)
       exit(-1);
     }
 
+    /* Args for the program - Size and Max generations. */
     N = atoi(argv[1]);
     int MAX_ITER = atoi(argv[2]);
 
@@ -163,12 +164,14 @@ int main(int argc, char **argv)
         createNextGen(a, b, N+2, N+2);
         printf("This is Iteration %d\n", i);
 
-        /*#ifdef DEBUG_PRINT
+
+        #ifdef DEBUG_PRINT
+            printf("This is Iteration %d\n", i);
             printarray(a, N+2, N+2);
             printf("\n");
             printarray(b, N+2, N+2);
             printf("\n");
-        #endif*/
+        #endif
 
         /* Check if the matrices are equal to end the Game. */
         int test=ismatrixequal(a,b,N);
