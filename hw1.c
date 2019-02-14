@@ -85,12 +85,12 @@ int checkneighbors(int **a, int x, int y)
 }
 
 /* Function to create next generation of cells */
-double **createNextGen(double **a, double **b, int mrows, int ncols)
+int **createNextGen(int **a, int **b, int N)
 {
     int i,j;
 
-    for (i=1; i<mrows-1; i++) {
-      for (j=1; j<ncols-1; j++){
+    for (i=1; i<N-1; i++) {
+      for (j=1; j<N-1; j++){
         int current = a[i][j];
         int neighbors=checkneighbors(a,i,j);
             // implement rules of the game to create next gen matrix 'b'
@@ -157,7 +157,7 @@ int main(int argc, char **argv)
     /* Create new generations until 'MAX_ITER' iterations reached or until there's no change in generations
        Ending criteria for the game is implemented below. */
     for(i=0; i<MAX_ITER; i++){
-        createNextGen(a, b, N+2, N+2);
+        createNextGen(a, b, N+2);
         //printf("This is Iteration %d\n", i);
 
 
