@@ -158,7 +158,7 @@ int main(int argc, char **argv)
        Ending criteria for the game is implemented below. */
     for(i=0; i<MAX_ITER; i++){
         createNextGen(a, b, N+2, N+2);
-        printf("This is Iteration %d\n", i);
+        //printf("This is Iteration %d\n", i);
 
 
         #ifdef DEBUG_PRINT
