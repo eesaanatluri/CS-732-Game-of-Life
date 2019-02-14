@@ -26,11 +26,11 @@ double gettime(void) {
 }
 
 /* Function to dynamically allocate memory for matrices(2D Arrays) using row major storage */
-double **allocarray(int P, int Q) {
+int **allocarray(int P, int Q) {
   int i;
-  double *p, **a;
-  p = (double *)malloc(P*Q*sizeof(double));
-  a = (double **)malloc(P*sizeof(double*));
+  int *p, **a;
+  p = (int *)malloc(P*Q*sizeof(int));
+  a = (int **)malloc(P*sizeof(int*));
 
   if (p == NULL || a == NULL)
     printf("Error allocating memory\n");
@@ -44,7 +44,7 @@ double **allocarray(int P, int Q) {
 
 /*Function definition to Initialize a matrix with random 0's and 1's
        and pad them with ghost cells on all 4 sides with 0's.       */
-double **initarray(double **a, int mrows, int ncols) {
+int **initarray(int **a, int mrows, int ncols) {
   int i,j;
 
   for (i=0; i<mrows; i++)
@@ -60,7 +60,7 @@ double **initarray(double **a, int mrows, int ncols) {
 }
 
 /* Function to print the 2D array (used in debugging when -D flag enabled)*/
-void printarray(double **a, int mrows, int ncols) {
+void printarray(int **a, int mrows, int ncols) {
   int i,j;
 
   for (i=0; i<mrows; i++) {
@@ -71,7 +71,7 @@ void printarray(double **a, int mrows, int ncols) {
 }
 
 /* Function to count the no. of live Neighbors */
-int checkneighbors(double **a, int x, int y)
+int checkneighbors(int **a, int x, int y)
 {
     int i,j;
     int count = 0;
@@ -130,7 +130,7 @@ int ismatrixequal(double **a, double **b, int N)
 int main(int argc, char **argv)
 {
     int N, i;
-    double **a=NULL, **b=NULL;
+    int **a=NULL, **b=NULL;
     double starttime, endtime;
     time_t t;
 
@@ -182,7 +182,7 @@ int main(int argc, char **argv)
               else
             {
                 //swapmatrices(a, b); by swapping their corresponding pointers
-                double **t = a;
+                int **t = a;
                 a = b;
                 b = t;
             }
