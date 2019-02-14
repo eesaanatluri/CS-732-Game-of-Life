@@ -110,11 +110,12 @@ int **createNextGen(int **a, int **b, int N)
 
 
 /* Function to check for equality of matrices */
-int ismatrixequal(double **a, double **b, int N)
+int ismatrixequal(int **a, int **b, int N)
 {
-    int i, j,flag=1;
-    for (i=0; i<N; i++){
-      for (j=0; j<N; j++){
+    int i, j;
+    int flag=1;
+    for (i=1; i<N-1; i++){
+      for (j=1; j<N-1; j++){
           if(a[i][j]!=b[i][j]){
               /* Start by assuming matrices are equal with flag set to 1.
               If the elements are not equal then set flag to 0 and break */
@@ -170,7 +171,7 @@ int main(int argc, char **argv)
         #endif
 
         /* Check if the matrices are equal to end the Game. */
-        int test=ismatrixequal(a,b,N);
+        int test=ismatrixequal(a,b,N+2);
 
         //printf("%d\n", test);
 
