@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH --array=0-4
+#SBATCH --partition=short
+#
+# Name your job to make it easier for you to track
+#
+#SBATCH --job-name=-gol-array-job_%A_%a
+#
+# Set your error and output files
+#
+#SBATCH --error=job_err/gol-array-job_%A_%a.err
+#SBATCH --output=job_out/gol-array-job_%A_%a.out
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#
+#SBATCH --mem-per-cpu=4096
+#
+# Set your email address and request notification when you job is complete or if it fails
+#
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-user=$USER@uab.edu
+
+size=(1000 5000 5000 10000 10000)
+generations=(1000 1000 5000 1000 10000)
+
+each_size=${size[$SLURM_ARRAY_TASK_ID]}
+each_generation=${generations[$SLURM_ARRAY_TASK_ID]}
+
+echo "Game of life for size ${each_size} over ${each_generation} generations"
+./gol ${each_size} ${each_generation}
